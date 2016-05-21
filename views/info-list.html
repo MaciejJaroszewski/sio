@@ -1,0 +1,179 @@
+<div class="row">
+    <h4 class="left">Komunikaty</h4>
+    <a data-target="modal1" class="btn-floating btn-large margin-fix red right modal-trigger tooltipped" data-position="left" data-delay="50" data-tooltip="Wysłanie komunikatu" href="#modal1">
+        <i class="large material-icons">playlist_add</i>
+    </a>
+    
+        
+
+
+    <table class="stripped highlight">
+    	<thead>
+    		<tr>
+    			<th>
+                    <a href="" class="sortTitle">
+                        <span ng-click="changeOrderBy('DATA')">Data dodania 
+                            <i ng-show="!orderDesc && isOrderedBy('DATA')" class="material-icons tiny">keyboard_arrow_down</i>
+                            <i ng-show="orderDesc && isOrderedBy('DATA')" class="material-icons tiny">keyboard_arrow_up</i>
+                        </span>
+                    </a>
+                </th>
+    			<th>
+                    <a href="" class="sortTitle">
+                        <span ng-click="changeOrderBy('RODZAJ')">Rodziaj komunikatu 
+                            <i ng-show="!orderDesc && isOrderedBy('RODZAJ')" class="material-icons tiny">keyboard_arrow_down</i>
+                            <i ng-show="orderDesc && isOrderedBy('RODZAJ')" class="material-icons tiny">keyboard_arrow_up</i>
+                        </span>
+                    </a>
+                </th>
+    			<th>
+                    <a href="" class="sortTitle">
+                        <span ng-click="changeOrderBy('TRESC')">Treść komunikatu  
+                            <i ng-show="!orderDesc && isOrderedBy('TRESC')" class="material-icons tiny">keyboard_arrow_down</i>
+                            <i ng-show="orderDesc && isOrderedBy('TRESC')" class="material-icons tiny">keyboard_arrow_up</i>
+                        </span>
+                    </a>
+                </th>
+    			<th>
+                    <a href="" class="sortTitle">
+                        <span ng-click="changeOrderBy('USER')">Dodano przez  
+                            <i ng-show="!orderDesc && isOrderedBy('USER')" class="material-icons tiny">keyboard_arrow_down</i>
+                            <i ng-show="orderDesc && isOrderedBy('USER')" class="material-icons tiny">keyboard_arrow_up</i>
+                        </span>
+                    </a>
+                </th> 
+                <th>
+
+                </th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr ng-class="{red : info.RODZAJ==admin}" ng-repeat="info in infoList | orderBy: orderByColumn : orderDesc">
+    			<th>{{ info.DATA }}</th>
+    			<th>{{ info.RODZAJ }}</th>
+    			<th>{{ info.TRESC }}</th>
+    			<th>{{ info.USER }}</th>
+                <th><a ng-click="editInfo(info)" class="waves-effect waves-teal btn-flat openEditModal"><i class="material-icons">border_color</i></a></th>
+    		</tr>
+    	</tbody>
+    </table>
+
+
+    <!-- modal for fixed action button - add new Info -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Dodaj komunikat</h4>
+            <p>
+            <!--  modal1 content - form - -->
+            <div class="row">
+                <form class="col s12" validate>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select ng-model="newInfo.msgType" id="msgType" name="msgType">
+                                <option value="" disabled selected>Wybierz typ komunikatu</option>
+                                <option value="alert">Alert</option>
+                                <option value="informacja">Informacja</option>
+                            </select>
+                            <label>Typ komunikatu</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <textarea ng-model="newInfo.entry" id="entry" name="entry" class="materialize-textarea"></textarea>
+                            <label for="entry">Treść komunikatu</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <select disabled ng-model="newInfo.addBy" id="addBy" name="addBy">
+                                <option ng-value="addBy" selected >{{addBy}}</option>
+                            </select>
+                            <label for="addBy">Dodano przez</label>
+                        </div>
+                        <!-- ewentualne dodanie daty i godziny -->
+                        
+                    </div>
+                    <button ng-click="insertInfo(newInfo)" id="fastInfoSend" class="btn waves-effect waves-light" type="send" name="sendNewInfo">Wyślij
+                            <i class="material-icons right">send</i>
+                    </button>
+                    <button class="btn waves-effect waves-light" type="reset" name="resetData">Resetuj</button>
+                </form>
+            </div>
+
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a class="btn-floating btn-large red exitModalButton">
+                <i class="large material-icons">not_interested</i>
+            </a>
+        </div>
+    </div>    
+
+    <!-- modal for fixed action button - edit Info -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4>Edycja komunikatu</h4>
+            <p>
+            <!--  modal1 content - form - -->
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select ng-model="editedInfo.msgType" id="msgType" name="msgType">
+                                <option value="alert">Alert</option>
+                                <option value="informacja">Informacja</option>
+                            </select>
+                            <label>Typ komunikatu</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <textarea ng-model="editedInfo.entry" id="entry" name="entry" class="materialize-textarea"></textarea>
+                            <label for="entry">Treść komunikatu</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <select disabled ng-model="editedInfo.addBy" id="addBy" name="addBy">
+                                <option ng-value="addBy" selected >{{addBy}}</option>
+                            </select>
+                            <label for="addBy">Dodano przez</label>
+                        </div>
+                        <!-- ewentualne dodanie daty i godziny -->
+                        
+                    </div>
+                    <button ng-click="updateInfo(editedInfo)" id="sendEditedInfo" class="btn waves-effect waves-light center-align" type="send" name="sendEditedInfo">Aktualizuj
+                            <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
+
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a class="btn-floating btn-large red exitModalButton">
+                <i class="large material-icons">not_interested</i>
+            </a>
+        </div>
+    </div>    
+
+    <script>
+        
+    $(document).ready(function(){
+        $('.modal-trigger').leanModal();
+        $('select').material_select();
+
+        $(".exitModalButton").click(function() {
+            $('#modal1').closeModal();
+            $('#modal2').closeModal();
+        });
+
+        $('#fastInfoSend').click(function (e){
+            e.preventDefault();
+            $('#modal1').closeModal();
+            Materialize.toast("Dodano komunikat", 4000);
+        });
+        $('#sendEditedInfo').click(function (e){
+            e.preventDefault();
+            $('#modal2').closeModal();
+            Materialize.toast("Zauktualizowano komunikat", 4000);
+        });
+
+        $('.tooltipped').tooltip({delay: 50});
+    })
+
+    </script>
+
+</div>

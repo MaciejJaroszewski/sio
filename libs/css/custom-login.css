@@ -1,0 +1,26 @@
+.text-align-center{
+    text-align:center;
+}
+ 
+.margin-bottom-1em{
+    margin-bottom:1em;
+}
+#form_container {
+	
+	padding: 10px;
+}
+input {
+	text-align: center;
+}
+.container {
+	padding-top: 10px;
+}
+.light-color {
+	color: #868686;
+}
+.frontImage {
+	padding-top: 10px;
+}
+.logo-title {
+    font-size: 1.84rem;
+}

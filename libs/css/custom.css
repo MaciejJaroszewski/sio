@@ -1,0 +1,31 @@
+.nav-wrapper a {
+    padding-left: 30px;
+}
+/*.aside, .main-content {
+    min-height: 700px;
+}*/
+.aside a {
+    height: auto;
+    font-size: 13px;
+    width: 100%;
+}
+.aside .row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.main-row {
+    margin: 0;
+}
+.sortTitle {
+    color: inherit;
+}
+.loader-container {
+    padding-top: 20%;
+}
+.main-content{
+    overflow-y: scroll;
+}
+.margin-fix {
+    margin-top: 2%;
+    margin-right: 10%;
+}

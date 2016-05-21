@@ -1,0 +1,42 @@
+<div class="row">
+    <h4 class="left">Użytkownicy systemu</h4>
+
+    <table>
+        <thead>
+            <tr>
+                <th data-field="id">
+                    <a href="" class="sortTitle">
+                        <span ng-click="changeOrderBy('id')">User ID 
+                        <i ng-show="!orderDesc && isOrderedBy('id')" class="material-icons tiny">keyboard_arrow_down</i>
+                        <i ng-show="orderDesc && isOrderedBy('id')" class="material-icons tiny">keyboard_arrow_up</i></span></a>
+                </th>
+                <th data-field="user">
+                    <a href="" class="sortTitle">
+                        <span ng-click="changeOrderBy('user')" href="">User 
+                        <i ng-show="!orderDesc && isOrderedBy('user')" class="material-icons tiny">keyboard_arrow_down</i>
+                        <i ng-show="orderDesc && isOrderedBy('user')" class="material-icons tiny">keyboard_arrow_up</i></span></a>
+                </th>
+                <th data-field="email">
+                    <a href="" class="sortTitle">
+                        <span ng-click="changeOrderBy('email')" href="">E-mail 
+                        <i ng-show="!orderDesc && isOrderedBy('email')" class="material-icons tiny">keyboard_arrow_down</i>
+                        <i ng-show="orderDesc && isOrderedBy('email')" class="material-icons tiny">keyboard_arrow_up</i></span></a>
+                </th>
+                <th data-filed="privilege">
+                    <a href="" class="sortTitle">
+                        <span ng-click="changeOrderBy('privilege')" href="">Uprawnienia 
+                        <i ng-show="!orderDesc && isOrderedBy('privilege')" class="material-icons tiny">keyboard_arrow_down</i>
+                        <i ng-show="orderDesc && isOrderedBy('privilege')" class="material-icons tiny">keyboard_arrow_up</i></span></a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users | orderBy: orderByColumn : orderDesc">
+                <th>{{ user.id }}</th>
+                <th>{{ user.user }}</th>
+                <th>{{ user.email }}</th>
+                <th>{{ user.privilege }}</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
